@@ -20,6 +20,17 @@ const CreateNewCV = async (data: any) => {
   }
 };
 
+const GetUserCV = async (userEmail: any) => {
+  try {
+    const response = await axiosClient.get('/user-cvs?filters[userEmail][$eq]='+userEmail);
+    return response;
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
+};
+
 export default {
   CreateNewCV,
+  GetUserCV,
 };

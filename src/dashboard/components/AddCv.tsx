@@ -12,13 +12,14 @@ import { Input } from '@/components/ui/input';
 import { v4 as uuidv4 } from 'uuid';
 import GlobalApi from './../../../service/GlobalApi';
 import { useUser } from '@clerk/clerk-react';
-import { c } from 'node_modules/vite/dist/node/types.d-aGj9QkWt';
+import { NavLink, useNavigate, useNavigation } from 'react-router-dom';
 
 function AddCv() {
   const [openDialog, setopenDialog] = useState(false);
   const [cvTitle, setcvTitle] = useState('');
   const { user } = useUser();
   const [loading, setLoading] = useState(false);
+  const navigation = useNavigate();
 
   const onCreate = async () => {
     setLoading(true);
@@ -38,6 +39,7 @@ function AddCv() {
           setopenDialog(false);
           setcvTitle('');
           setLoading(false);
+          navigation('/dashboard/cv/' + uuid + '/edit');
         }
       })
       .catch((error) => {
