@@ -1,30 +1,29 @@
 export default {
+  jobTitle: 'Software Engineer',
   firstName: 'John',
   lastName: 'Doe',
   email: 'johndoe@example.com',
   phone: '123-456-7890',
-  address: '123 Main St',
-  city: 'Anytown',
-  state: 'CA',
-  zip: '12345',
+  address: '123 Main St, Anytown USA',
   themeColor: '#007bff',
-  summery: 'I am a dummy summary',
+  summery:
+    'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora, doloremque itaque illum, cupiditate sunt deleniti, vero minus voluptatem velit nulla mollitia eveniet error quod facilis? Perferendis assumenda tempore recusandae adipisci?',
   education: [
     {
       id: 1,
-      degree: 'Bachelor of Science in Computer Science',
+      degree: 'Bachelor of Science ',
       major: 'Artificial Intelligence',
       school: 'Stanford University',
-      discription: 'Researched and developed machine learning algorithms.',
+      description: 'Researched and developed machine learning algorithms.',
       startYear: '2010',
       endYear: '2014',
     },
     {
       id: 2,
-      degree: 'Master of Science in Computer Science',
+      degree: 'Master of Science',
       major: 'Machine Learning',
       school: 'Stanford University',
-      discription: 'Researched and developed machine learning algorithms.',
+      description: 'Researched and developed machine learning algorithms.',
       startYear: '2014',
       endYear: '2016',
     },
@@ -38,15 +37,17 @@ export default {
       startYear: '2016',
       endYear: '2018',
       description:
-        'Worked on various projects in the search and advertising space.',
+        'lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, sapien vel malesuada malesuada, velit turpis tincidunt enim, ut tincidunt sapien velit vel sapien.',
     },
     {
       id: 2,
       title: 'Software Engineer Intern',
+      company: 'Google',
       location: 'Menlo Park, CA',
       startYear: '2015',
       endYear: '2016',
-      description: 'Worked on various projects in the social media space.',
+      description:
+        'lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, sapien vel malesuada malesuada, velit turpis tincidunt enim, ut tincidunt sapien velit vel sapien.',
     },
   ],
   skills: [
