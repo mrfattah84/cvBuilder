@@ -6,7 +6,6 @@ import { CVInfoContext } from '@/context/CVInfoContext';
 import dummy from '@/data/dummy';
 
 function EditCV() {
-  const params = useParams();
   const [CVInfo, setCVInfo] = useState({});
 
   useEffect(() => {

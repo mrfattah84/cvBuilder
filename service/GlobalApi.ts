@@ -10,27 +10,25 @@ const axiosClient = axios.create({
   },
 });
 
-const CreateNewCV = async (data: any) => {
-  try {
-    const response = await axiosClient.post('/user-cvs', data);
-    return response;
-  } catch (error) {
-    console.error(error);
-    return error;
-  }
+const CreateNewCV = (data) => {
+  return axiosClient.post('/user-cvs', data);
 };
 
-const GetUserCV = async (userEmail: any) => {
-  try {
-    const response = await axiosClient.get('/user-cvs?filters[userEmail][$eq]='+userEmail);
-    return response;
-  } catch (error) {
-    console.error(error);
-    return error;
-  }
+const GetUserCV = (userEmail) => {
+  return axiosClient.get('/user-cvs?filters[userEmail][$eq]=' + userEmail);
+};
+
+const GetCV = (id) => {
+  return axiosClient.get('/user-cvs/' + id);
+};
+
+const UpdateCVDetail = (id, data) => {
+  return axiosClient.put('/user-cvs/' + id, data);
 };
 
 export default {
   CreateNewCV,
   GetUserCV,
+  UpdateCVDetail,
+  GetCV
 };
