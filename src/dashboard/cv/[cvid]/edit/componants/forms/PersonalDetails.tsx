@@ -50,27 +50,57 @@ function PersonalDetails({ enabledNext }) {
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label className="text-sm">First Name</label>
-            <Input name="firstName" required onChange={handleInputChange} defaultValue={CVInfo?.firstName} />
+            <Input
+              name="firstName"
+              required
+              onChange={handleInputChange}
+              defaultValue={CVInfo?.firstName}
+            />
           </div>
           <div>
             <label className="text-sm">Last Name</label>
-            <Input name="lastName" required onChange={handleInputChange} defaultValue={CVInfo?.lastName} />
+            <Input
+              name="lastName"
+              required
+              onChange={handleInputChange}
+              defaultValue={CVInfo?.lastName}
+            />
           </div>
           <div className="col-span-2">
             <label className="text-sm">JobTitle</label>
-            <Input name="jobTitle" required onChange={handleInputChange} defaultValue={CVInfo?.jobTitle} />
+            <Input
+              name="jobTitle"
+              required
+              onChange={handleInputChange}
+              defaultValue={CVInfo?.jobTitle}
+            />
           </div>
           <div className="col-span-2">
             <label className="text-sm">Address</label>
-            <Input name="address" required onChange={handleInputChange} defaultValue={CVInfo?.address} />
+            <Input
+              name="address"
+              required
+              onChange={handleInputChange}
+              defaultValue={CVInfo?.address}
+            />
           </div>
           <div>
             <label className="text-sm">Phone</label>
-            <Input name="phone" required onChange={handleInputChange} defaultValue={CVInfo?.phone} />
+            <Input
+              name="phone"
+              required
+              onChange={handleInputChange}
+              defaultValue={CVInfo?.phone}
+            />
           </div>
           <div>
             <label className="text-sm">Email</label>
-            <Input name="email" required onChange={handleInputChange} defaultValue={CVInfo?.email} />
+            <Input
+              name="email"
+              required
+              onChange={handleInputChange}
+              defaultValue={CVInfo?.email}
+            />
           </div>
         </div>
         <div className="mt-5 flex justify-end">
