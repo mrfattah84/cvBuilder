@@ -67,18 +67,4 @@ export default {
       level: 100,
     },
   ],
-  projects: [
-    {
-      id: 1,
-      name: 'Project 1',
-      description: 'A project that does something.',
-      link: 'https://github.com/johndoe/project1',
-    },
-    {
-      id: 2,
-      name: 'Project 2',
-      description: 'A project that does something else.',
-      link: 'https://github.com/johndoe/project2',
-    },
-  ],
 };

@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import PersonalDetails from './forms/PersonalDetails';
 import Summery from './forms/Summery';
 import Experience from './forms/Experience';
+import Education from './forms/Education';
 
 function FormSection() {
   const [activeFormIndex, setActiveFormIndex] = useState(0);
@@ -34,6 +35,8 @@ function FormSection() {
       ) : activeFormIndex == 1 ? (
         <Experience enabledNext={(v) => setEnableNext(v)} />
       ) : activeFormIndex == 2 ? (
+        <Education enabledNext={(v) => setEnableNext(v)} />
+      ) : activeFormIndex == 3 ? (
         <Summery enabledNext={(v) => setEnableNext(v)} />
       ) : null}
     </div>
