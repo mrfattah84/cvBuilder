@@ -15,8 +15,8 @@ export default {
       major: 'Artificial Intelligence',
       school: 'Stanford University',
       description: 'Researched and developed machine learning algorithms.',
-      startYear: '2010',
-      endYear: '2014',
+      startYear: '2024-10-30',
+      endYear: '2024-10-31',
     },
     {
       id: 2,
@@ -24,8 +24,8 @@ export default {
       major: 'Machine Learning',
       school: 'Stanford University',
       description: 'Researched and developed machine learning algorithms.',
-      startYear: '2014',
-      endYear: '2016',
+      startYear: '2024-10-30',
+      endYear: '2024-10-31',
     },
   ],
   experience: [
@@ -34,8 +34,8 @@ export default {
       title: 'Software Engineer',
       company: 'Google',
       location: 'Mountain View, CA',
-      startYear: '2016',
-      endYear: '2018',
+      startYear: '2024-10-30',
+      endYear: '2024-10-31',
       description:
         'lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, sapien vel malesuada malesuada, velit turpis tincidunt enim, ut tincidunt sapien velit vel sapien.',
     },
@@ -44,8 +44,8 @@ export default {
       title: 'Software Engineer Intern',
       company: 'Google',
       location: 'Menlo Park, CA',
-      startYear: '2015',
-      endYear: '2016',
+      startYear: '2024-10-30',
+      endYear: '2024-10-31',
       description:
         'lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, sapien vel malesuada malesuada, velit turpis tincidunt enim, ut tincidunt sapien velit vel sapien.',
     },

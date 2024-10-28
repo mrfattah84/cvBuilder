@@ -3,6 +3,10 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { CircleX, LoaderCircle, PlusCircle } from 'lucide-react';
 import React, { useContext, useState } from 'react';
+import GlobalApi from './../../../../../../../service/GlobalApi';
+import { CVInfoContext } from '@/context/CVInfoContext';
+import { useParams } from 'react-router-dom';
+import { toast } from 'sonner';
 
 const formField = () => ({
   id: crypto.randomUUID(),
@@ -17,12 +21,35 @@ const formField = () => ({
 function Experience({ enabledNext }) {
   const [experienceList, setExperienceList] = useState([formField()]);
   const [loading, setLoading] = useState(false);
-  console.log(experienceList);
+  const { CVInfo, setCVInfo } = useContext(CVInfoContext);
+  const params = useParams();
 
   const handleChange = (index, event) => {
     const { name, value } = event.target;
-    experienceList[index] = { ...experienceList[index], [name]: value };
-    setExperienceList([...experienceList]);
+    const newExperienceList = [...experienceList];
+    newExperienceList[index][name] = value;
+    setExperienceList(newExperienceList);
+    setCVInfo({ ...CVInfo, experience: newExperienceList });
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    const data = {
+      data: { experience: experienceList },
+    };
+
+    GlobalApi.UpdateCVDetail(params.cvid, data).then(
+      (response) => {
+        enabledNext(true);
+        setLoading(false);
+        toast('Experiences updated successfully');
+      },
+      (error) => {
+        setLoading(false);
+      }
+    );
   };
 
   const addExperience = () => {
@@ -40,7 +67,7 @@ function Experience({ enabledNext }) {
     <div className="border-t-4 border-primary rounded-md shadow-lg p-4 mt-5">
       <h2 className="text-2xl font-bold">Professional Experience</h2>
       <h2 className="text-lg mb-4">now add your professional experience</h2>
-      <div>
+      <form onSubmit={onSubmit}>
         {experienceList.map((experience, index) => (
           <div
             className="grid grid-cols-2 gap-4 shadow-md rounded-md p-4 mb-4 border relative"
@@ -56,6 +83,7 @@ function Experience({ enabledNext }) {
               <Input
                 name="title"
                 required
+                defaultValue={CVInfo.experience[index]?.title}
                 onChange={(event) => handleChange(index, event)}
               />
             </div>
@@ -64,6 +92,7 @@ function Experience({ enabledNext }) {
               <Input
                 name="company"
                 required
+                defaultValue={CVInfo.experience[index]?.company}
                 onChange={(event) => handleChange(index, event)}
               />
             </div>
@@ -72,6 +101,7 @@ function Experience({ enabledNext }) {
               <Input
                 name="location"
                 required
+                defaultValue={CVInfo.experience[index]?.location}
                 onChange={(event) => handleChange(index, event)}
               />
             </div>
@@ -81,6 +111,7 @@ function Experience({ enabledNext }) {
                 type="date"
                 name="startYear"
                 required
+                defaultValue={CVInfo.experience[index]?.startYear}
                 onChange={(event) => handleChange(index, event)}
               />
             </div>
@@ -90,6 +121,7 @@ function Experience({ enabledNext }) {
                 type="date"
                 name="endYear"
                 required
+                defaultValue={CVInfo.experience[index]?.endYear}
                 onChange={(event) => handleChange(index, event)}
               />
             </div>
@@ -98,6 +130,7 @@ function Experience({ enabledNext }) {
               <Textarea
                 name="description"
                 required
+                defaultValue={CVInfo.experience[index]?.description}
                 onChange={(event) => handleChange(index, event)}
               />
             </div>
@@ -112,11 +145,11 @@ function Experience({ enabledNext }) {
           >
             <PlusCircle className="mr-2" /> Add More
           </Button>
-          <Button disabled={loading}>
+          <Button disabled={loading} type="submit">
             {loading ? <LoaderCircle className="animate-spin" /> : 'Save'}
           </Button>
         </div>
-      </div>
+      </form>
     </div>
   );
 }
