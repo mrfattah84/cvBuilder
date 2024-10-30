@@ -34,12 +34,13 @@ function AddCv() {
     };
     GlobalApi.CreateNewCV(data)
       .then((response: any) => {
-        console.log(response);
         if (response.status === 201) {
           setopenDialog(false);
           setcvTitle('');
           setLoading(false);
-          navigation('/dashboard/cv/' + uuid + '/edit');
+          navigation(
+            '/dashboard/cv/' + response.data.data.documentId + '/edit'
+          );
         }
       })
       .catch((error) => {
