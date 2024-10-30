@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { CircleX, LoaderCircle, PlusCircle } from 'lucide-react';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import GlobalApi from './../../../../../../../service/GlobalApi';
 import { CVInfoContext } from '@/context/CVInfoContext';
 import { useParams } from 'react-router-dom';
@@ -29,8 +29,7 @@ function Experience({ enabledNext }) {
     const newExperienceList = [...experienceList];
     newExperienceList[index][name] = value;
     setExperienceList(newExperienceList);
-    setCVInfo({ ...CVInfo, experience: newExperienceList });
-  };
+  }; 
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -63,6 +62,9 @@ function Experience({ enabledNext }) {
     setExperienceList(newExperienceList);
   };
 
+  useEffect(() => {
+    setCVInfo({ ...CVInfo, experience: experienceList });
+  }, [experienceList]);
   return (
     <div className="border-t-4 border-primary rounded-md shadow-lg p-4 mt-5">
       <h2 className="text-2xl font-bold">Professional Experience</h2>

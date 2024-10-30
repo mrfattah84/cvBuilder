@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { CircleX, LoaderCircle, PlusCircle } from 'lucide-react';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import GlobalApi from './../../../../../../../service/GlobalApi';
 import { CVInfoContext } from '@/context/CVInfoContext';
 import { useParams } from 'react-router-dom';
@@ -29,7 +29,6 @@ function Education({ enabledNext }) {
     const newEducationList = [...educationList];
     newEducationList[index][name] = value;
     setEducationList(newEducationList);
-    setCVInfo({ ...CVInfo, education: newEducationList });
   };
 
   const onSubmit = (e) => {
@@ -61,6 +60,10 @@ function Education({ enabledNext }) {
     newEducationList.splice(index, 1);
     setEducationList(newEducationList);
   };
+
+  useEffect(() => {
+    setCVInfo({ ...CVInfo, education: educationList });
+  }, [educationList]);
 
   return (
     <div className="border-t-4 border-primary rounded-md shadow-lg p-4 mt-5">
