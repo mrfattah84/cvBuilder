@@ -5,6 +5,7 @@ import PersonalDetails from './forms/PersonalDetails';
 import Summery from './forms/Summery';
 import Experience from './forms/Experience';
 import Education from './forms/Education';
+import Skill from './forms/Skill';
 
 function FormSection() {
   const [activeFormIndex, setActiveFormIndex] = useState(0);
@@ -37,6 +38,8 @@ function FormSection() {
       ) : activeFormIndex == 2 ? (
         <Education enabledNext={(v) => setEnableNext(v)} />
       ) : activeFormIndex == 3 ? (
+        <Skill enabledNext={(v) => setEnableNext(v)} />
+      ) : activeFormIndex == 4 ? (
         <Summery enabledNext={(v) => setEnableNext(v)} />
       ) : null}
     </div>
