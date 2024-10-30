@@ -22,6 +22,10 @@ function Skill({ enabledNext }) {
   const { CVInfo, setCVInfo } = useContext(CVInfoContext);
   const params = useParams();
 
+  useEffect(() => {
+    CVInfo && setSkillList(CVInfo?.skills || [formField()]);
+  }, []);
+
   const handleChange = (index, name, value) => {
     const newSkillList = [...skillList];
     newSkillList[index][name] = value;
@@ -67,7 +71,7 @@ function Skill({ enabledNext }) {
       <h2 className="text-2xl font-bold">Professional skill</h2>
       <h2 className="text-lg mb-4">now add your professional skill</h2>
       <form onSubmit={onSubmit}>
-        {skillList.map((skill, index) => (
+        {skillList?.map((skill, index) => (
           <div
             className="grid grid-cols-2 gap-4 shadow-md rounded-md p-4 mb-4 border relative"
             key={skill.id}
@@ -82,7 +86,7 @@ function Skill({ enabledNext }) {
               <Input
                 name="name"
                 required
-                defaultValue={CVInfo.skills[index]?.name}
+                defaultValue={skill?.name}
                 onChange={(event) =>
                   handleChange(index, 'name', event.target.value)
                 }
@@ -91,7 +95,7 @@ function Skill({ enabledNext }) {
             <div className="flex flex-col	">
               <label className="text-sm">level</label>
               <Rating
-                value={CVInfo.skills[index]?.level / 20}
+                value={skill?.level / 20}
                 onChange={(v) => handleChange(index, 'level', v * 20)}
               />
             </div>

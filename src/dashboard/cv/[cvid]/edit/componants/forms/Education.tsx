@@ -24,6 +24,10 @@ function Education({ enabledNext }) {
   const { CVInfo, setCVInfo } = useContext(CVInfoContext);
   const params = useParams();
 
+  useEffect(() => {
+    CVInfo && setEducationList(CVInfo?.education || [formField()]);
+  }, []);
+
   const handleChange = (index, event) => {
     const { name, value } = event.target;
     const newEducationList = [...educationList];
@@ -70,10 +74,10 @@ function Education({ enabledNext }) {
       <h2 className="text-2xl font-bold">Professional education</h2>
       <h2 className="text-lg mb-4">now add your professional education</h2>
       <form onSubmit={onSubmit}>
-        {educationList.map((education, index) => (
+        {educationList?.map((education, index) => (
           <div
             className="grid grid-cols-2 gap-4 shadow-md rounded-md p-4 mb-4 border relative"
-            key={education.id}
+            key={education?.id}
           >
             <CircleX
               className="text-red-500 absolute top-1 right-1 cursor-pointer"
@@ -85,7 +89,7 @@ function Education({ enabledNext }) {
               <Input
                 name="degree"
                 required
-                defaultValue={CVInfo.education[index]?.degree}
+                defaultValue={education?.degree}
                 onChange={(event) => handleChange(index, event)}
               />
             </div>
@@ -94,7 +98,7 @@ function Education({ enabledNext }) {
               <Input
                 name="major"
                 required
-                defaultValue={CVInfo.education[index]?.major}
+                defaultValue={education?.major}
                 onChange={(event) => handleChange(index, event)}
               />
             </div>
@@ -103,7 +107,7 @@ function Education({ enabledNext }) {
               <Input
                 name="school"
                 required
-                defaultValue={CVInfo.education[index]?.school}
+                defaultValue={education?.school}
                 onChange={(event) => handleChange(index, event)}
               />
             </div>
@@ -113,7 +117,7 @@ function Education({ enabledNext }) {
                 type="date"
                 name="startYear"
                 required
-                defaultValue={CVInfo.education[index]?.startYear}
+                defaultValue={education?.startYear}
                 onChange={(event) => handleChange(index, event)}
               />
             </div>
@@ -123,7 +127,7 @@ function Education({ enabledNext }) {
                 type="date"
                 name="endYear"
                 required
-                defaultValue={CVInfo.education[index]?.endYear}
+                defaultValue={education?.endYear}
                 onChange={(event) => handleChange(index, event)}
               />
             </div>
@@ -132,7 +136,7 @@ function Education({ enabledNext }) {
               <Textarea
                 name="description"
                 required
-                defaultValue={CVInfo.education[index]?.description}
+                defaultValue={education?.description}
                 onChange={(event) => handleChange(index, event)}
               />
             </div>
@@ -140,6 +144,7 @@ function Education({ enabledNext }) {
         ))}
         <div className="mt-5 flex justify-end gap-2">
           <Button
+            type="button"
             className="border-primary text-primary"
             disabled={loading}
             variant={'outline'}

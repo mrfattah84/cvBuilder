@@ -24,12 +24,16 @@ function Experience({ enabledNext }) {
   const { CVInfo, setCVInfo } = useContext(CVInfoContext);
   const params = useParams();
 
+  useEffect(() => {
+    CVInfo && setExperienceList(CVInfo?.experience || [formField()]);
+  }, []);
+
   const handleChange = (index, event) => {
     const { name, value } = event.target;
     const newExperienceList = [...experienceList];
     newExperienceList[index][name] = value;
     setExperienceList(newExperienceList);
-  }; 
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -85,7 +89,7 @@ function Experience({ enabledNext }) {
               <Input
                 name="title"
                 required
-                defaultValue={CVInfo.experience[index]?.title}
+                defaultValue={experience?.title}
                 onChange={(event) => handleChange(index, event)}
               />
             </div>
@@ -94,7 +98,7 @@ function Experience({ enabledNext }) {
               <Input
                 name="company"
                 required
-                defaultValue={CVInfo.experience[index]?.company}
+                defaultValue={experience?.company}
                 onChange={(event) => handleChange(index, event)}
               />
             </div>
@@ -103,7 +107,7 @@ function Experience({ enabledNext }) {
               <Input
                 name="location"
                 required
-                defaultValue={CVInfo.experience[index]?.location}
+                defaultValue={experience?.location}
                 onChange={(event) => handleChange(index, event)}
               />
             </div>
@@ -113,7 +117,7 @@ function Experience({ enabledNext }) {
                 type="date"
                 name="startYear"
                 required
-                defaultValue={CVInfo.experience[index]?.startYear}
+                defaultValue={experience?.startYear}
                 onChange={(event) => handleChange(index, event)}
               />
             </div>
@@ -123,7 +127,7 @@ function Experience({ enabledNext }) {
                 type="date"
                 name="endYear"
                 required
-                defaultValue={CVInfo.experience[index]?.endYear}
+                defaultValue={experience?.endYear}
                 onChange={(event) => handleChange(index, event)}
               />
             </div>
@@ -132,7 +136,7 @@ function Experience({ enabledNext }) {
               <Textarea
                 name="description"
                 required
-                defaultValue={CVInfo.experience[index]?.description}
+                defaultValue={experience?.description}
                 onChange={(event) => handleChange(index, event)}
               />
             </div>
