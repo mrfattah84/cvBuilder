@@ -26,9 +26,14 @@ const UpdateCVDetail = (id, data) => {
   return axiosClient.put('/user-cvs/' + id, data);
 };
 
+const DeleteCV = (id) => {
+  return axiosClient.delete('/user-cvs/' + id);
+};
+
 export default {
   CreateNewCV,
   GetUserCV,
   UpdateCVDetail,
-  GetCV
+  GetCV,
+  DeleteCV,
 };

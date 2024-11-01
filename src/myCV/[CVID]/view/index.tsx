@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 import CVPreview from '@/dashboard/cv/[cvid]/edit/componants/CVPreview';
 import { Button } from '@/components/ui/button';
 import { RWebShare } from 'react-web-share';
-import { Download, Share, Share2Icon } from 'lucide-react';
+import { Download, Share2Icon } from 'lucide-react';
 
 function ViewCV() {
   const [CVInfo, setCVInfo] = useState();

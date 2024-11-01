@@ -23,7 +23,7 @@ function Dashboard() {
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 mt-10">
         <AddCv />
         {cvList.map(function (cv) {
-          return <CVCard cv={cv} key={cv.cvid} />;
+          return <CVCard cv={cv} key={cv.cvid} reloadData={GetCVList} />;
         })}
       </div>
     </div>
