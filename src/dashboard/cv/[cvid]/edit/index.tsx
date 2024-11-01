@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import FormSection from './componants/FormSection';
 import CVPreview from './componants/CVPreview';
 import { CVInfoContext } from '@/context/CVInfoContext';
-import dummy from '@/data/dummy';
 import GlobalApi from './../../../../../service/GlobalApi';
 
 function EditCV() {
@@ -16,7 +15,8 @@ function EditCV() {
 
   const GetCVInfo = () => {
     GlobalApi.GetCV(cvid).then((res) => {
-      setCVInfo({ ...res.data.data, themeColor: '#000' });
+      const defaultColoredCV = { ...res.data.data, themeColor: '#000' };
+      setCVInfo(defaultColoredCV);
     });
   };
 

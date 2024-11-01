@@ -5,6 +5,7 @@ function CVPreview() {
   const { CVInfo, setCVInfo } = useContext(CVInfoContext);
   return (
     <div
+      id="Print"
       className="px-[30px] py-[40px] shadow-lg heigh-full w-full bg-white  border border-t-8"
       style={{ borderColor: CVInfo?.themeColor }}
     >

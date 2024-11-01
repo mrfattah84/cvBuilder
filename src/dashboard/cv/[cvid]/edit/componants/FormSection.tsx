@@ -6,10 +6,12 @@ import Summery from './forms/Summery';
 import Experience from './forms/Experience';
 import Education from './forms/Education';
 import Skill from './forms/Skill';
+import { Navigate, useParams } from 'react-router-dom';
 
 function FormSection() {
   const [activeFormIndex, setActiveFormIndex] = useState(0);
   const [enableNext, setEnableNext] = useState(false);
+  const params = useParams();
   return (
     <div>
       <div className="flex justify-between">
@@ -41,6 +43,8 @@ function FormSection() {
         <Skill enabledNext={(v) => setEnableNext(v)} />
       ) : activeFormIndex == 4 ? (
         <Summery enabledNext={(v) => setEnableNext(v)} />
+      ) : activeFormIndex == 5 ? (
+        <Navigate to={`/myCV/${params.cvid}/view`} />
       ) : null}
     </div>
   );

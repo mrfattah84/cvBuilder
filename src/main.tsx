@@ -8,6 +8,7 @@ import Home from './home/index.tsx';
 import Dashboard from './dashboard/index.tsx';
 import { ClerkProvider } from '@clerk/clerk-react';
 import EditCV from './dashboard/cv/[cvid]/edit/index.tsx';
+import ViewCV from './myCV/[CVID]/view/index.tsx';
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
   {
     path: '/auth/signIn',
     element: <SignInPage />,
+  },
+  {
+    path: '/myCV/:CVID/view',
+    element: <ViewCV />,
   },
 ]);
 createRoot(document.getElementById('root')!).render(
