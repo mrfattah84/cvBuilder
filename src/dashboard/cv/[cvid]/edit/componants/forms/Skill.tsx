@@ -27,6 +27,7 @@ function Skill({ enabledNext }) {
   }, []);
 
   const handleChange = (index, name, value) => {
+    enabledNext(false);
     const newSkillList = [...skillList];
     newSkillList[index][name] = value;
     setSkillList(newSkillList);

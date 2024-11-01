@@ -13,13 +13,27 @@ function Summery({ enabledNext }) {
   const params = useParams();
   const [formData, setFormData] = useState({});
   const [loading, setLoading] = useState(false);
-  const prompt = `user typed '${formData?.summery}' for ${CVInfo.jobTitle} cv summery please enhanse it between 4-5 lines `;
+  const [AILoading, setAILoading] = useState(false);
 
-  const generateAISummery = async () => {
-    setLoading(true);
+  const generateAISummery = async (event) => {
+    setAILoading(true);
+    const prompt = `Please write a concise and impactful summary of my resume, highlighting my key skills, experiences, and career goals. 
+
+    I am looking for a position in the ${CVInfo?.jobTitle} field.
+
+    here is my data:
+    ${JSON.stringify(CVInfo)}
+
+    Please ensure the summary is professional, engaging, and concise, ideally within 100 words.
+
+    Target Audience: Hiring managers in the ${CVInfo.job_title} field.
+    Tone: Professional and confident.
+    
+    give me the result in raw text without any unnecessary text or formatting.`;
     const res = await AISession.sendMessage(prompt);
-    console.log(res.response.text());
-    setLoading(false);
+    event.target.parentNode.parentNode.querySelector('textarea').value =
+      res.response.text();
+    setAILoading(false);
   };
 
   const handleInputChange = (e) => {
@@ -53,6 +67,7 @@ function Summery({ enabledNext }) {
       <h2 className="text-2xl font-bold">Summery</h2>
       <h2 className="text-lg mb-4">Add Summery for your CV here.</h2>
       <Textarea
+        className="h-60"
         name="summery"
         onChange={handleInputChange}
         defaultValue={CVInfo?.summery}
@@ -61,9 +76,14 @@ function Summery({ enabledNext }) {
         <Button
           variant={'outline'}
           className="text-primary border-primary"
-          onClick={generateAISummery}
+          onClick={(event) => generateAISummery(event)}
         >
-          <Brain /> Generate With AI
+          <Brain />
+          {AILoading ? (
+            <LoaderCircle className="animate-spin" />
+          ) : (
+            'Generate With AI'
+          )}
         </Button>
         <Button onClick={handleSubmit} disabled={loading}>
           {loading ? <LoaderCircle className="animate-spin" /> : 'Save'}

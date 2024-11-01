@@ -1,12 +1,13 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { CircleX, LoaderCircle, PlusCircle } from 'lucide-react';
+import { Brain, CircleX, LoaderCircle, PlusCircle } from 'lucide-react';
 import React, { useContext, useEffect, useState } from 'react';
 import GlobalApi from './../../../../../../../service/GlobalApi';
 import { CVInfoContext } from '@/context/CVInfoContext';
 import { useParams } from 'react-router-dom';
 import { toast } from 'sonner';
+import { AISession } from './../../../../../../../service/AIModel';
 
 const formField = () => ({
   id: crypto.randomUUID(),
@@ -22,13 +23,35 @@ function Education({ enabledNext }) {
   const [educationList, setEducationList] = useState([formField()]);
   const [loading, setLoading] = useState(false);
   const { CVInfo, setCVInfo } = useContext(CVInfoContext);
+  const [AILoading, setAILoading] = useState(false);
   const params = useParams();
 
   useEffect(() => {
     CVInfo && setEducationList(CVInfo?.education || [formField()]);
   }, []);
 
+  const generateAISummery = async (index, event) => {
+    setAILoading(true);
+    const prompt = `Please write a compelling summary of my education, showcasing skills and knowledge relevant to a career in the ${
+      CVInfo?.jobTitle
+    } field. 
+
+    Here is my education:
+    ${JSON.stringify(educationList[index])}
+
+    Please make the summary concise and impactful, highlighting skills and knowledge most relevant to this industry.
+    
+    ideally within 100 words.
+    
+    give me the result in raw text without any unnecessary text or formatting.`;
+    const res = await AISession.sendMessage(prompt);
+    event.target.parentNode.parentNode.querySelector('textarea').value =
+      res.response.text();
+    setAILoading(false);
+  };
+
   const handleChange = (index, event) => {
+    enabledNext(false);
     const { name, value } = event.target;
     const newEducationList = [...educationList];
     newEducationList[index][name] = value;
@@ -71,8 +94,8 @@ function Education({ enabledNext }) {
 
   return (
     <div className="border-t-4 border-primary rounded-md shadow-lg p-4 mt-5">
-      <h2 className="text-2xl font-bold">Professional education</h2>
-      <h2 className="text-lg mb-4">now add your professional education</h2>
+      <h2 className="text-2xl font-bold">Education</h2>
+      <h2 className="text-lg mb-4">now add your education</h2>
       <form onSubmit={onSubmit}>
         {educationList?.map((education, index) => (
           <div
@@ -132,8 +155,23 @@ function Education({ enabledNext }) {
               />
             </div>
             <div className="col-span-2">
-              <label className="text-sm">Summery</label>
+              <label className="text-sm flex justify-between items-start m-4">
+                Summery
+                <Button
+                  variant={'outline'}
+                  className="text-primary border-primary"
+                  onClick={(event) => generateAISummery(index, event)}
+                >
+                  <Brain />
+                  {AILoading ? (
+                    <LoaderCircle className="animate-spin" />
+                  ) : (
+                    'Generate With AI'
+                  )}
+                </Button>
+              </label>
               <Textarea
+                className="h-60"
                 name="description"
                 required
                 defaultValue={education?.description}

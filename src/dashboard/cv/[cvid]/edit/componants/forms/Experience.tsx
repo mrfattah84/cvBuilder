@@ -1,12 +1,15 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { CircleX, LoaderCircle, PlusCircle } from 'lucide-react';
+import { Brain, CircleX, LoaderCircle, PlusCircle } from 'lucide-react';
 import React, { useContext, useEffect, useState } from 'react';
 import GlobalApi from './../../../../../../../service/GlobalApi';
 import { CVInfoContext } from '@/context/CVInfoContext';
 import { useParams } from 'react-router-dom';
 import { toast } from 'sonner';
+import { AISession } from './../../../../../../../service/AIModel';
+import { comma } from 'postcss/lib/list';
+import { json } from 'stream/consumers';
 
 const formField = () => ({
   id: crypto.randomUUID(),
@@ -22,13 +25,35 @@ function Experience({ enabledNext }) {
   const [experienceList, setExperienceList] = useState([formField()]);
   const [loading, setLoading] = useState(false);
   const { CVInfo, setCVInfo } = useContext(CVInfoContext);
+  const [AILoading, setAILoading] = useState(false);
   const params = useParams();
 
   useEffect(() => {
     CVInfo && setExperienceList(CVInfo?.experience || [formField()]);
   }, []);
 
+  const generateAISummery = async (index, event) => {
+    setAILoading(true);
+    const prompt = `Please write a concise and impactful summary of my work experience
+
+    Here is my experience:
+    ${JSON.stringify(experienceList[index])}
+
+    I am looking for a position in the ${CVInfo?.jobTitle} field.
+
+    Please make sure the summary is engaging and compelling, emphasizing my contributions and impact. 
+
+    ideally within 100 words.
+    
+    give me the result in raw text without any unnecessary text or formatting.`;
+    const res = await AISession.sendMessage(prompt);
+    event.target.parentNode.parentNode.querySelector('textarea').value =
+      res.response.text();
+    setAILoading(false);
+  };
+
   const handleChange = (index, event) => {
+    enabledNext(false);
     const { name, value } = event.target;
     const newExperienceList = [...experienceList];
     newExperienceList[index][name] = value;
@@ -132,8 +157,23 @@ function Experience({ enabledNext }) {
               />
             </div>
             <div className="col-span-2">
-              <label className="text-sm">Summery</label>
+              <label className="text-sm flex justify-between items-start m-4">
+                Summery
+                <Button
+                  variant={'outline'}
+                  className="text-primary border-primary"
+                  onClick={(event) => generateAISummery(index, event)}
+                >
+                  <Brain />
+                  {AILoading ? (
+                    <LoaderCircle className="animate-spin" />
+                  ) : (
+                    'Generate With AI'
+                  )}
+                </Button>
+              </label>
               <Textarea
+                className="h-60"
                 name="description"
                 required
                 defaultValue={experience?.description}
