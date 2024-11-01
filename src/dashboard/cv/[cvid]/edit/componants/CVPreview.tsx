@@ -12,7 +12,7 @@ function CVPreview() {
         className=" font-bold text-center text-xl"
         style={{ color: CVInfo?.themeColor }}
       >
-        {CVInfo?.firstName + ' ' + CVInfo?.lastName}
+        {CVInfo?.firstName && '' + ' ' + CVInfo?.lastName && ''}
       </h2>
       <h2 className="text-center text-sm font-medium">{CVInfo?.jobTitle}</h2>
       <h2
