@@ -30,6 +30,7 @@ function AddCv() {
         cvid: uuid,
         userEmail: user?.primaryEmailAddress?.emailAddress,
         userName: user?.fullName,
+        themeColor: '#000',
       },
     };
     GlobalApi.CreateNewCV(data)

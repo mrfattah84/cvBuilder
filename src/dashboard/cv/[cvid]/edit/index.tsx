@@ -15,8 +15,7 @@ function EditCV() {
 
   const GetCVInfo = () => {
     GlobalApi.GetCV(cvid).then((res) => {
-      const defaultColoredCV = { ...res.data.data, themeColor: '#000' };
-      setCVInfo(defaultColoredCV);
+      setCVInfo(res.data.data);
     });
   };
 

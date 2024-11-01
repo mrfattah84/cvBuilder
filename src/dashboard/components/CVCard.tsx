@@ -86,7 +86,7 @@ function CVCard({ cv, reloadData }) {
               <AlertDialogCancel onClick={() => setOpenAlert(false)}>
                 Cancel
               </AlertDialogCancel>
-              <AlertDialogAction onClick={onDelete}>
+              <AlertDialogAction disabled={loading} onClick={onDelete}>
                 {loading ? <Loader2 className="animate-spin" /> : 'Continue'}
               </AlertDialogAction>
             </AlertDialogFooter>
