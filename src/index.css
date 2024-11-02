@@ -10,6 +10,7 @@
   #cv-view > #Print {
     display: block;
     margin: 0;
+    print-color-adjust: exact;
   }
 
   #root {
