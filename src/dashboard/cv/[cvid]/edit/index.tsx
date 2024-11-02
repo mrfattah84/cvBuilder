@@ -20,7 +20,7 @@ function EditCV() {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-10 p-10">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-10 py-10 md:p-10">
       <CVInfoContext.Provider value={{ CVInfo, setCVInfo }}>
         <FormSection />
         <CVPreview />

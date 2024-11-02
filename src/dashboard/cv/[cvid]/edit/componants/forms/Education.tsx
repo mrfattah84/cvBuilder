@@ -159,7 +159,7 @@ function Education({ enabledNext }) {
                 Summery
                 <Button
                   variant={'outline'}
-                  className="text-primary border-primary"
+                  className="text-primary border-primary gap-1 p-1"
                   onClick={(event) => generateAISummery(index, event)}
                 >
                   <Brain />

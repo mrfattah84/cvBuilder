@@ -30,7 +30,7 @@ function FormSection() {
   };
 
   return (
-    <div>
+    <div className='flex flex-col'>
       <div className="flex justify-between">
         <Popover
           onOpenChange={() => {
@@ -55,7 +55,6 @@ function FormSection() {
           {activeFormIndex > 0 && (
             <Button onClick={() => setActiveFormIndex(activeFormIndex - 1)}>
               <ArrowLeft />
-              previous
             </Button>
           )}
           <Button

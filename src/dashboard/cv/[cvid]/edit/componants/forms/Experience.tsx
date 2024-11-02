@@ -157,11 +157,11 @@ function Experience({ enabledNext }) {
               />
             </div>
             <div className="col-span-2">
-              <label className="text-sm flex justify-between items-start m-4">
+              <label className="text-sm flex justify-between items-start m-4 ">
                 Summery
                 <Button
                   variant={'outline'}
-                  className="text-primary border-primary"
+                  className="text-primary border-primary gap-1 p-1"
                   onClick={(event) => generateAISummery(index, event)}
                 >
                   <Brain />
