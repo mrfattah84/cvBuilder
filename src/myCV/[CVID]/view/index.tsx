@@ -35,7 +35,7 @@ function ViewCV() {
           <h1>Here is your CV!</h1>
           <div className="flex w-full px-6 py-2 justify-between">
             <Button onClick={HandleDownload}>
-              Download <Download className="pl-2" />
+              Download <Download />
             </Button>
             <RWebShare
               data={{
@@ -45,7 +45,7 @@ function ViewCV() {
               }}
             >
               <Button>
-                Share <Share2Icon className="pl-2" />
+                Share <Share2Icon />
               </Button>
             </RWebShare>
           </div>
