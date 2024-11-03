@@ -4,6 +4,7 @@ import { UserButton } from '@clerk/clerk-react';
 import { ArrowBigRight, ArrowRight } from 'lucide-react';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { CVPreview } from './../../public/CVPreview.pdf';
 
 function Home() {
   return (
@@ -27,8 +28,10 @@ function Home() {
               <ArrowRight />
             </Button>
           </Link>
-          
-          <a href="http://localhost:5173/myCV/y2eibde85fq4uloaahriaw1s/view"><Button variant={"outline"}>CV preview</Button></a>
+
+          <a href="/CVPreview.pdf" target="_blank">
+            <Button variant={'outline'}>CV preview</Button>
+          </a>
         </div>
       </div>
     </div>
