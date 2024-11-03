@@ -2,7 +2,7 @@ import { CVInfoContext } from '@/context/CVInfoContext';
 import React, { useContext } from 'react';
 
 function CVPreview() {
-  const { CVInfo, setCVInfo } = useContext(CVInfoContext);
+  const { CVInfo, setCVInfo } = useContext<any>(CVInfoContext);
   return (
     <div
       id="Print"

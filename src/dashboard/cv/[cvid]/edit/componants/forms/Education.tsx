@@ -22,7 +22,7 @@ const formField = () => ({
 function Education({ enabledNext }) {
   const [educationList, setEducationList] = useState([formField()]);
   const [loading, setLoading] = useState(false);
-  const { CVInfo, setCVInfo } = useContext(CVInfoContext);
+  const { CVInfo, setCVInfo } = useContext<any>(CVInfoContext);
   const [AILoading, setAILoading] = useState(false);
   const params = useParams();
 

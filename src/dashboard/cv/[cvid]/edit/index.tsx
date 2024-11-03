@@ -6,7 +6,7 @@ import { CVInfoContext } from '@/context/CVInfoContext';
 import GlobalApi from './../../../../../service/GlobalApi';
 
 function EditCV() {
-  const [CVInfo, setCVInfo] = useState();
+  const [CVInfo, setCVInfo] = useState<any>();
   const { cvid } = useParams();
 
   useEffect(() => {

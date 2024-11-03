@@ -24,7 +24,7 @@ const formField = () => ({
 function Experience({ enabledNext }) {
   const [experienceList, setExperienceList] = useState([formField()]);
   const [loading, setLoading] = useState(false);
-  const { CVInfo, setCVInfo } = useContext(CVInfoContext);
+  const { CVInfo, setCVInfo } = useContext<any>(CVInfoContext);
   const [AILoading, setAILoading] = useState(false);
   const params = useParams();
 

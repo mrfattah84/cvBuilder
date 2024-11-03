@@ -6,7 +6,7 @@ import CVCard from './components/CVCard';
 
 function Dashboard() {
   const { user } = useUser();
-  const [cvList, setCvList] = useState([]);
+  const [cvList, setCvList] = useState<any[]>([]);
 
   const GetCVList = () => {
     GlobalApi.GetUserCV(user?.primaryEmailAddress?.emailAddress).then((res) => {

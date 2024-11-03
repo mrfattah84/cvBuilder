@@ -22,7 +22,7 @@ function FormSection() {
   const [enableNext, setEnableNext] = useState(false);
   const params = useParams();
   const [color, setColor] = useState('#000');
-  const { CVInfo, setCVInfo } = useContext(CVInfoContext);
+  const { CVInfo, setCVInfo } = useContext<any>(CVInfoContext);
 
   const handleColorChange = (color) => {
     setColor(color);

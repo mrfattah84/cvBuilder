@@ -19,7 +19,7 @@ const formField = () => ({
 function Skill({ enabledNext }) {
   const [skillList, setSkillList] = useState([formField()]);
   const [loading, setLoading] = useState(false);
-  const { CVInfo, setCVInfo } = useContext(CVInfoContext);
+  const { CVInfo, setCVInfo } = useContext<any>(CVInfoContext);
   const params = useParams();
 
   useEffect(() => {

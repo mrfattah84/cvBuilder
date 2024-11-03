@@ -9,7 +9,7 @@ import { RWebShare } from 'react-web-share';
 import { Download, Share2Icon } from 'lucide-react';
 
 function ViewCV() {
-  const [CVInfo, setCVInfo] = useState();
+  const [CVInfo, setCVInfo] = useState<any>();
   const { CVID } = useParams();
 
   useEffect(() => {

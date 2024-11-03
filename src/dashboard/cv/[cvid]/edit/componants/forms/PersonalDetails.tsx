@@ -8,7 +8,7 @@ import { LoaderCircle } from 'lucide-react';
 import { toast } from 'sonner';
 
 function PersonalDetails({ enabledNext }) {
-  const { CVInfo, setCVInfo } = useContext(CVInfoContext);
+  const { CVInfo, setCVInfo } = useContext<any>(CVInfoContext);
   const params = useParams();
   const [formData, setFormData] = useState({});
   const [loading, setLoading] = useState(false);
